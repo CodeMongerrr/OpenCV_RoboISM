@@ -1,0 +1,18 @@
+    elif len(approx) == 5:
+        cv2.putText(img, "Pentagon", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+    elif len(approx) == 6:
+        cv2.putText(img, "Hexagon", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+    elif len(approx) == 10:
+        cv2.putText(img, "Star", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+    else:
+        cv2.putText(img, "Circle", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+
+                elif asp1 >=0.95 and asp2 <= 1.05:
+            cv2.putText(img, "rectangle", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
+
+        else:
+            cv2.putText(img, "trapezium", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
