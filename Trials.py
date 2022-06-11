@@ -2,6 +2,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import cv2
 import imutils
+import math
 
 img = cv2.imread('CVtask.jpg')
 imgGrey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -17,16 +18,26 @@ Arucos[2] = cv2.imread('XD.jpg')
 Arucos[3] = cv2.imread('LMAO.jpg')
 val = []
 col = []
+corrected = {1: 0, 2: 0, 3: 0, 4: 0}
 def FindArucoMarkers(img):
-    imgGray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_5X5_50)
     arucoParam = cv2.aruco.DetectorParameters_create()
-    bboxes, ids, rejected = cv2.aruco.detectMarkers(imgGray, arucoDict, parameters = arucoParam)
-    return ids[0][0]
+    corners, ids, rejected = cv2.aruco.detectMarkers(img, arucoDict, parameters = arucoParam)
+    corners = np.array(corners)
+    corners.resize(4, 2)
+    print(corners)
+    img1 = imutils.rotate(img, 180 / math.pi * math.atan((int(corners[1][1]) - int(corners[0][1])) / (int(corners[1][0]) - int(corners[0][0]))), scale=0.8)
+    corners, ids, rejected = cv2.aruco.detectMarkers(img1, arucoDict, parameters=arucoParam)
+    corners = np.array(corners)
+    corners.resize(4, 2)
+    print(corners)
+    img1 = img1[int(corners[0][0]):int(corners[2][0]), int(corners[0][1]): int(corners[2][1])]
+    corrected[id[0][0]] = img1
+    cv2.imshow(f"{ids[0][0]}", img1)
+
 
 for i in range(4):
-    s = FindArucoMarkers(Arucos[i])
-    val.append(s)
+    FindArucoMarkers(Arucos[i])
 
 for contour in contours:
     approx = cv2.approxPolyDP(contour, 0.01* cv2.arcLength(contour, True), True)
