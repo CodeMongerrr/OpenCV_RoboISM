@@ -1,4 +1,5 @@
 import cv2
+import imutils
 import numpy as mp
 import numpy as np
 
@@ -8,16 +9,13 @@ arr = np.array(img)
 arr1 =np.array(img1)
 i1 = 0
 jk = 0
-for i in range(arr.shape[0]):
+for i in range(img1.shape[0]):
+    for i in range(img1.shape[1]):
+        if img1[i][j][0] == 255 and img1[i][j][1] == 255 and img1[i][j][2] == 255:
+            img1
 
-    for j in range(arr.shape[1]):
+a = imutils.rotate(img1, 30, scale= 0.6)
+cv2.imshow("asa", a)
 
-        if i >200 and i<= 200 + arr1.shape[0]+1 and j > 200 and j <= 200 + arr1.shape[1]+1:
-            arr[i][j][0] = arr1[i1][jk][0]
-            arr[i][j][1] = arr1[i1][jk][1]
-            arr[i][j][2] = arr1[i1][jk][2]
-            jk += 1
-    if i > 200 and i < 200 + arr1.shape[0] and j > 200 and j < 200 + arr1.shape[1]:
-        i1 += 1
-        print(i1)
-cv2.imshow("img", arr)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
