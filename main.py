@@ -81,17 +81,7 @@ for contour in contours:
             #
             #     if h2 - Y > h1 + 1 and w2 - X > w1 + 1:
             #         CV[X:X + h1, Y:Y + w1] = Arucos[2]
-
-
             cv2.imshow("Contours", CV)
-
-
-
-
-
-
-
-
 cv2.imshow("shapes", CV)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
