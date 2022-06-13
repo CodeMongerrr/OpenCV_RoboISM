@@ -71,16 +71,16 @@ for contour in contours:
             x2 = x1+w
             y2 = y1+h
             color = CV[int(y1+h/2)][int(x1+w/2)]
-            # if color[0] < 20 and color[1] > 240 and color[2] <20:
-            #     x, y, w, h = cv2.boundingRect(contour)
-            #     Y = y
-            #     X = x
-            #     h1 , w1 = Arucos[0].shape[0], Arucos[0].shape[1]
-            #     h2, w2 = x1, y1
-            #     #print(Y, X)
-            #
-            #     if h2 - Y > h1 + 1 and w2 - X > w1 + 1:
-            #         CV[X:X + h1, Y:Y + w1] = Arucos[2]
+            if color[0] < 20 and color[1] > 240 and color[2] <20:
+                 x, y, w, h = cv2.boundingRect(contour)
+                 Y = y
+                 X = x
+                 h1 , w1 = Arucos[0].shape[0], Arucos[0].shape[1]
+                 h2, w2 = x1, y1
+                 print(Y, X)
+                 if h2 - Y > h1 + 1 and w2 - X > w1 + 1:
+                     CV[X:X + h1, Y:Y + w1] = val[2]
+
             cv2.imshow("Contours", CV)
 cv2.imshow("shapes", CV)
 cv2.waitKey(0)
