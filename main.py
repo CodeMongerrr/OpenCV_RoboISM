@@ -42,7 +42,7 @@ def FindArucoMarkers(img):
     corners = np.array(corners)
     corners.resize(4, 2)
     #print(corners)
-    img1 = imutils.rotate(img, 180 / math.pi * math.atan((int(corners[1][1]) - int(corners[0][1])) / (int(corners[1][0]) - int(corners[0][0]))), scale=0.8)
+    img1 = imutils.rotate(img, 180 / math.pi * math.atan((int(corners[1][1]) - int(corners[0][1])) / (int(corners[1][0]) - int(corners[0][0]))), scale=1)
     #cv2.imshow(f"{ids[0][0]}", img1)
     corners, ids, rejected = cv2.aruco.detectMarkers(img1, arucoDict, parameters=arucoParam)
     corners = np.array(corners)
