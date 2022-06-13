@@ -12,6 +12,7 @@ cv2.imshow("img", CV)
 sqs = []
 a = 0
 Arucos = [0,0,0,0]
+
 Arucos[0] = cv2.imread('Ha.jpg')
 Arucos[1] = cv2.imread('HaHa.jpg')
 Arucos[2] = cv2.imread('XD.jpg')
@@ -21,6 +22,18 @@ col = []
 prob = {"green":1, "orange":2, "black":3, "pink":4}
 colour = ""
 corrected = [0, 0, 0, 0]
+
+
+# def overlay(image1, image2, x, y):
+#     image1_gray = cv2.cvtColor(image1, cv2.COLOR_BGR2GRAY)
+#     contours, _ = cv2.findContours(image1_gray, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+#     image1_mask = np.zeros_like(image1)
+#     cv2.drawContours(image1_mask, contours, -1, (255,255,255), -1)
+#     idx = np.where(image1_mask == 255)
+#     image2[y+idx[0], x+idx[1], idx[2]] = image1[idx[0], idx[1], idx[2]]
+#     return image2
+
+
 def FindArucoMarkers(img):
     arucoDict = cv2.aruco.Dictionary_get(cv2.aruco.DICT_5X5_50)
     arucoParam = cv2.aruco.DetectorParameters_create()
@@ -44,7 +57,7 @@ def FindArucoMarkers(img):
 
 for i in range(4):
     val.append(FindArucoMarkers(Arucos[i]))
-    #FindArucoMarkers(Arucos[i])
+    FindArucoMarkers(Arucos[i])
 
 for contour in contours:
     approx = cv2.approxPolyDP(contour, 0.01* cv2.arcLength(contour, True), True)
@@ -66,22 +79,27 @@ for contour in contours:
             x = approx.ravel()[0]
             y = approx.ravel()[1]
             print(x, y)
+            #imsdas = overlay(Arucos[0], CV, x1, y1)
+            #cv2.imshow("ADad", imsdas)
             cv2.putText(CV, "square", (x, y), cv2.FONT_HERSHEY_COMPLEX, 0.5, (0, 0, 0))
             cv2.rectangle(CV, (x1, y1) , (x1 + w, y1 + w), (0, 255, 0), 1)
             x2 = x1+w
             y2 = y1+h
             color = CV[int(y1+h/2)][int(x1+w/2)]
-            if color[0] < 20 and color[1] > 240 and color[2] <20:
-                 x, y, w, h = cv2.boundingRect(contour)
-                 Y = y
-                 X = x
-                 h1 , w1 = Arucos[0].shape[0], Arucos[0].shape[1]
-                 h2, w2 = x1, y1
-                 print(Y, X)
-                 if h2 - Y > h1 + 1 and w2 - X > w1 + 1:
-                     CV[X:X + h1, Y:Y + w1] = val[2]
+            #if color[0] < 20 and color[1] > 240 and color[2] <20:
+                 # x, y, w, h = cv2.boundingRect(contour)
+                 # Y = y
+                 # X = x
+                 # h1 , w1 = Arucos[0].shape[0], Arucos[0].shape[1]
+                 # h2, w2 = x1, y1
+                 # print(Y, X)
+                 # if h2 - Y > h1 + 1 and w2 - X > w1 + 1:
+                 #     CV[X:X + h1, Y:Y + w1] = val[2]
+
 
             cv2.imshow("Contours", CV)
+
+#imsdas = overlay(Arucos[0], CV, 0, 0)
 cv2.imshow("shapes", CV)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
