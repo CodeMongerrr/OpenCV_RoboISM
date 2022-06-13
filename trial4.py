@@ -7,7 +7,7 @@ contours = 0
 
 
 
-img = cv2.imread('HaHa.jpg')
+img = cv2.imread('XD.jpg')
 imgGrey = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 _, thrash = cv2.threshold(imgGrey, 240, 255, cv2.THRESH_BINARY)
 contours, _ = cv2.findContours(thrash, cv2.RETR_TREE, cv2.CHAIN_APPROX_NONE)
