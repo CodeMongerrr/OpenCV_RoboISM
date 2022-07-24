@@ -74,7 +74,7 @@ def color(color,lower,upper):     #function to detect color of squares
         return False
 
 
-def final_func(img,id_list):    #function for detecting squares,its contours and imposing the aruco on the respective squares
+def Result(img,id_list):    #function for detecting squares,its contours and imposing the aruco on the respective squares
         img = cv2.imread("CVtask.jpg")
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         ret , thresh = cv2.threshold(gray, 230, 255, cv2.THRESH_BINARY)
@@ -114,9 +114,9 @@ def final_func(img,id_list):    #function for detecting squares,its contours and
                     img[y:y+h,x:x+w] = img[y:y+h,x:x+w]+ aruco_img
         return img
 
-final_func(img,id_list)
+Result(img,id_list)
 
 cv2.namedWindow("FINAL_IMAGE",cv2.WINDOW_NORMAL)
-cv2.imshow("FINAL_IMAGE",final_func(img,id_list))
+cv2.imshow("FINAL_IMAGE",Result(img,id_list))
 cv2.waitKey(0)
 cv2.destroyAlowerWindows()
